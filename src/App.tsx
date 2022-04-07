@@ -1,4 +1,4 @@
-import { Route, Routes, Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { IndexPage } from "./pages/IndexPage/IndexPage";
 

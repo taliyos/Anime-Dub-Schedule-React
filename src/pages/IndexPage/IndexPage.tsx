@@ -1,20 +1,28 @@
 import { useState } from "react";
 
-// Service imports
+// Service Imports
 import { getCalendar } from "../../services/api";
+
+// Interface Imports
 import { ShowDate } from "../../interfaces/showDate";
+import { StreamingService } from "../../interfaces/streamingService";
+
+// Constant Imports
+import funimation from "../../constants/StreamingServices/funimation.json";
+import crunchyroll from "../../constants/StreamingServices/crunchyroll.json";
+import hidive from "../../constants/StreamingServices/hidive.json";
+import netflix from "../../constants/StreamingServices/netflix.json";
 
 export function IndexPage() {
     const [run, setRun] = useState(false);
-
-    let calendar : ShowDate[] = [];
+    const [calendar, setCalendar] = useState<ShowDate[]>([]);
 
     async function retrieveCalendar() {
-        calendar = await getCalendar();
         setRun(true);
+        setCalendar(await getCalendar());
     }
 
-    retrieveCalendar();
+    if (!run) retrieveCalendar();
 
     return (
       <section id="index-page" className="section page">
@@ -28,6 +36,25 @@ export function IndexPage() {
 
                 </div>
             ))}
+            <div>
+                <h2>Test Images </h2>
+                <div>
+                    <p>{ (funimation as StreamingService).name }</p>
+                    <img src = {(funimation as StreamingService).image} alt = "Funimation" />
+                </div>
+                <div>
+                    <p>{ (crunchyroll as StreamingService).name }</p>
+                    <img src = {(crunchyroll as StreamingService).image} alt = "Crunchyroll" />
+                </div>
+                <div>
+                    <p>{ (hidive as StreamingService).name }</p>
+                    <img src = {(hidive as StreamingService).image} alt = "HiDive" />
+                </div>
+                <div>
+                    <p>{ (netflix as StreamingService).name }</p>
+                    <img src = {(netflix as StreamingService).image} alt = "Netflix" />
+                </div>
+            </div>
         </div>
       </section>
     );
