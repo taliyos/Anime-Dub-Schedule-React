@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Service Imports
 import { getCalendar } from "../../services/api";
@@ -14,15 +14,12 @@ import hidive from "../../constants/StreamingServices/hidive.json";
 import netflix from "../../constants/StreamingServices/netflix.json";
 
 export function IndexPage() {
-    const [run, setRun] = useState(false);
     const [calendar, setCalendar] = useState<ShowDate[]>([]);
 
-    async function retrieveCalendar() {
-        setRun(true);
-        setCalendar(await getCalendar());
-    }
+    useEffect(() => {
+        getCalendar().then((cal : ShowDate[]) => setCalendar(cal));
+    }, []);
 
-    if (!run) retrieveCalendar();
 
     return (
       <section id="index-page" className="section page">
