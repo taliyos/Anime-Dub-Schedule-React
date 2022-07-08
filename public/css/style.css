@@ -1,0 +1,264 @@
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url("/static/fonts/Montserrat/Montserrat-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat-Bold";
+  src: url("/static/fonts/Montserrat/Montserrat-Bold.ttf");
+  font-weight: 600;
+  font-style: bold;
+}
+@font-face {
+  font-family: "Montserrat-ExtraBold";
+  src: url("/static/fonts/Montserrat/Montserrat-ExtraBold.ttf");
+  font-weight: 800;
+  font-style: extra-bold;
+}
+body {
+  font-family: "Montserrat-Regular";
+  background: #1e272e;
+  background-image: linear-gradient(184deg, #1e272e 0, rgba(15, 24, 31, 0.75) 75vh);
+  min-height: 100vh;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.main .login {
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  position: absolute;
+  width: 100%;
+}
+.main .login .loginButton {
+  padding: 0.7rem 1rem;
+  text-align: center;
+  width: 10rem;
+  background: #02a9ff;
+  border-radius: 0.5rem;
+  -webkit-filter: drop-shadow(-0.2rem 0.15rem 0.5rem black);
+          filter: drop-shadow(-0.2rem 0.15rem 0.5rem black);
+  text-decoration: none;
+  color: white;
+}
+.main .login .loginButton:hover {
+  cursor: pointer;
+}
+.main .login .loginButton:active {
+  -webkit-box-shadow: inset 0.1rem -0.1rem 0.5rem #0b85c2;
+          box-shadow: inset 0.1rem -0.1rem 0.5rem #0b85c2;
+  cursor: pointer;
+}
+.main .showHover {
+  top: 0;
+  width: 35%;
+  left: 100%;
+  border-radius: 1rem;
+  padding-left: 4.5rem;
+  padding-right: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+.main .showHover div {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+.main .showSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.main .showSection .date {
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 2.25rem;
+  margin-right: 3rem;
+}
+.main .showSection .date h2 {
+  font-weight: 500;
+  font-size: 1.65rem;
+}
+.main .showSection .date .dateNum {
+  font-weight: 800;
+}
+.main .showSection .shows {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 85vw;
+  height: 100%;
+}
+.main .showSection .shows .dayOfWeek {
+  font-family: Montserrat-Bold;
+}
+.main .showSection .shows .showImages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  overflow: auto;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow: visible;
+}
+.main .showSection .shows .showImages .show {
+  margin-right: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 15rem;
+  height: 21rem;
+  position: relative;
+}
+.main .showSection .shows .showImages .show .showArt {
+  width: 100;
+  height: 100%;
+}
+.main .showSection .shows .showImages .show .showArt img {
+  min-width: 100%;
+  max-height: 100%;
+  border: 0.15rem transparent solid;
+  border-radius: 0.35rem;
+  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
+  transition: -webkit-box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -webkit-transition: border-color 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main .showSection .shows .showImages .show .showArt .platforms {
+  position: absolute;
+  top: 0.5rem;
+  left: calc(100% - 3rem);
+  width: 2.5rem;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 0.5rem;
+}
+.main .showSection .shows .showImages .show .showArt .platforms .platform {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  background: linear-gradient(184deg, white 0%, #dae4ff 75%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+.main .showSection .shows .showImages .show .showArt .platforms .platform img {
+  padding: 0;
+  margin: 0;
+  max-width: 90%;
+  min-width: 90%;
+  max-height: 90%;
+  border: none;
+  text-align: center;
+  font-size: 1.5rem;
+}
+.main .showSection .shows .showImages .show .showArt .platforms .platform:hover {
+  -webkit-box-shadow: 0 0 0.3rem white;
+          box-shadow: 0 0 0.3rem white;
+}
+.main .showSection .shows .showImages .show .showHover {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  z-index: 2;
+  pointer-events: none;
+  width: 18vw;
+  margin-left: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff5e2d), to(#a41508));
+  background: linear-gradient(180deg, #ff5e2d 0%, #a41508 100%);
+  border: 0.1rem white solid;
+  -webkit-box-shadow: 0 0 0.3rem white;
+          box-shadow: 0 0 0.3rem white;
+  -webkit-transition: -webkit-transform 0.25s ease-out;
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.main .showSection .shows .showImages .show .showHover .showName {
+  font-family: Montserrat-ExtraBold;
+}
+.main .showSection .shows .showImages .show:hover {
+  cursor: pointer;
+}
+.main .showSection .shows .showImages .show:hover .showArt img {
+  border: 0.15rem white solid;
+  -webkit-box-shadow: 0 0 0.3rem white;
+          box-shadow: 0 0 0.3rem white;
+}
+.main .showSection .shows .showImages .show:hover .showHover {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.main .showSection .shows .showImages .show:hover .platforms {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.main .showSection .shows .showImages .show:hover .platforms img {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}

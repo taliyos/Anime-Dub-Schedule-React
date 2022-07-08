@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getCalendar } from "../../services/api";
 
 // Interface Imports
+import { CalendarItem } from "../../interfaces/calendarItem";
 import { ShowDate } from "../../interfaces/showDate";
 import { StreamingService } from "../../interfaces/streamingService";
 
@@ -12,12 +13,47 @@ import funimation from "../../constants/StreamingServices/funimation.json";
 import crunchyroll from "../../constants/StreamingServices/crunchyroll.json";
 import hidive from "../../constants/StreamingServices/hidive.json";
 import netflix from "../../constants/StreamingServices/netflix.json";
+import { days } from "../../constants/time";
+
+// Component Imports
+import Calendar from "../../components/Calendar";
 
 export function IndexPage() {
     const [calendar, setCalendar] = useState<ShowDate[]>([]);
 
     useEffect(() => {
-        getCalendar().then((cal : ShowDate[]) => setCalendar(cal));
+        getCalendar().then((calendar : CalendarItem[]) => {
+            let showDateCalendar : ShowDate[] = [];
+
+            for (let i = 0; i < calendar.length; i++) {
+                let calDate = new Date(Date.UTC(calendar[i].time.year, calendar[i].time.month, calendar[i].time.day, calendar[i].time.hour, calendar[i].time.minute));
+                calendar[i].time.hour = calDate.getHours();
+                calendar[i].time.minute = calDate.getMinutes();
+                if (showDateCalendar.length === 0 || (
+                    calDate.getFullYear() !== showDateCalendar[showDateCalendar.length - 1].year
+                    || calDate.getMonth() !== showDateCalendar[showDateCalendar.length - 1].month
+                    || calDate.getDate() !== showDateCalendar[showDateCalendar.length - 1].day
+                    )) 
+                {
+                    // Create a new ShowDate
+                    showDateCalendar.push({
+                        year: calDate.getFullYear(),
+                        month: calDate.getMonth(),
+                        day: calDate.getDate(),
+                        dayOfWeek: days[calDate.getDay()],
+                        calendarItems: [calendar[i]],
+                    });
+                }
+                else {
+                    // Add the calendar item to the last show date
+                    showDateCalendar[showDateCalendar.length - 1].calendarItems.push(calendar[i]);
+                }
+            }
+        
+            console.log(showDateCalendar);
+
+            setCalendar(showDateCalendar);
+        });
     }, []);
 
 
@@ -27,13 +63,8 @@ export function IndexPage() {
             <h1>AniDub Schedule</h1>
             
         </header>
-        <div className = "showSection">
-            { calendar?.map( (data) => (
-                <div>
-
-                </div>
-            ))}
-            <div>
+        <Calendar calendar = {calendar}></Calendar>
+        <div>
                 <h2>Test Images </h2>
                 <div>
                     <p>{ (funimation as StreamingService).name }</p>
@@ -52,7 +83,6 @@ export function IndexPage() {
                     <img src = {(netflix as StreamingService).image} alt = "Netflix" />
                 </div>
             </div>
-        </div>
       </section>
     );
   }

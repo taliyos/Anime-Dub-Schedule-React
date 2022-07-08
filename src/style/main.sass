@@ -1,0 +1,186 @@
+@font-face
+    font-family: "Montserrat-Regular"
+    src: url('../../public/fonts/Montserrat/Montserrat-Regular.ttf')
+    font-weight: normal
+    font-style: normal
+
+@font-face
+    font-family: "Montserrat-Bold"
+    src: url('../../public/fonts/Montserrat/Montserrat-Bold.ttf')
+    font-weight: 600
+    font-style: bold
+  
+@font-face
+    font-family: "Montserrat-ExtraBold"
+    src: url('../../public/fonts/Montserrat/Montserrat-ExtraBold.ttf')
+    font-weight: 800
+    font-style: extra-bold
+    
+body
+    font-family: "Montserrat-Regular"
+    background: rgba(30, 39, 46,1.0)
+    background-image: linear-gradient(184deg,rgba(30, 39, 46,1.0) 0,rgba(15, 24, 31,0.75) 75vh)
+    min-height: 100vh
+    color: white
+    padding: 0
+    margin: 0
+
+.main
+    display: flex
+    flex-direction: column
+
+    .login
+        margin-top: 2rem
+        margin-left: 1.5rem
+        position: absolute
+        width: 100%
+        .loginButton
+            padding: 0.7rem 1rem
+            text-align: center
+            width: 10rem
+            background: #02a9ff
+            border-radius: 0.5rem
+            filter: drop-shadow(-0.2rem 0.15rem 0.5rem black)
+            text-decoration: none
+            color: white
+            &:hover
+                cursor: pointer
+            &:active
+                box-shadow: inset 0.1rem -0.1rem 0.5rem #0b85c2
+                cursor: pointer
+
+    .showHover
+        top: 0
+        width: 35%
+        left: 100%
+        border-radius: 1rem
+        padding-left: 4.5rem
+        padding-right: 2.5rem
+        padding-top: 2rem
+        padding-bottom: 4rem
+        div
+            font-size: 1.25rem
+            font-weight: 300
+    .showSection
+        display: flex
+        flex-direction: row
+        padding-left: 2rem
+        padding-right: 2rem
+        .date
+            text-transform: uppercase
+            text-align: center
+            padding-top: 2.25rem
+            margin-right: 3rem
+            h2
+                font-weight: 500
+                font-size: 1.65rem
+            .dateNum
+                font-weight: 800
+        .shows
+            display: flex
+            flex-direction: column
+            width: 85vw
+            height: 100%
+            .dayOfWeek
+                font-family: Montserrat-Bold
+
+            .showImages
+                display: flex
+                flex-direction: row
+                overflow: auto
+                flex-grow: 1
+                flex-wrap: wrap
+                overflow: visible
+                .show
+                    margin-right: 1.5rem
+                    margin-bottom: 1.5rem
+                    width: 15rem
+                    height: 21rem
+                    position: relative
+                    .showArt
+                        width: 100
+                        height: 100%
+                        img
+                            min-width: 100%
+                            max-height: 100%
+                            border: 0.15rem transparent solid
+                            border-radius: 0.35rem
+                            transition: box-shadow 0.15s ease-in-out
+                            transition: border-color 0.15s ease-in-out
+                            object-fit: cover
+                        .platforms
+                            position: absolute
+                            top: 0.5rem
+                            left: calc(100% - 3rem)
+                            width: 2.5rem
+                            height: 100%
+
+                            display: flex
+                            flex-direction: column
+                            align-items: center
+                            justify-content: flex-start
+                            gap: 0.5rem
+
+                            .platform
+                                width: 2.5rem
+                                height: 2.5rem
+
+                                border-radius: 100%
+                                background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgba(218,228,255,1) 75%)
+
+                                display: flex
+                                justify-content: center
+                                align-items: center
+                                text-decoration: none
+                                color: black
+                                font-weight: bolder
+                                img
+                                    padding: 0
+                                    margin: 0
+                                    max-width: 90%
+                                    min-width: 90%
+                                    max-height: 90%
+                                    border: none
+                                    text-align: center
+                                    font-size: 1.5rem
+                            .platform:hover
+                                box-shadow: 0 0 0.3rem white
+                    .showHover
+                        position: absolute
+                        display: flex
+                        flex-direction: column
+
+                        box-sizing: border-box
+                        z-index: 2
+                        pointer-events: none
+
+                        width: 18vw
+                        margin-left: 1rem
+                        padding: 1rem
+
+                        border-radius: 0.5rem
+
+                        background: linear-gradient(180deg, rgba(255,94,45,1) 0%, rgba(164,21,8,1) 100%)
+                        border: 0.1rem white solid
+                        box-shadow: 0 0 0.3rem white
+
+                        transition: transform 0.25s ease-out
+                        opacity: 0
+                        transform: scale(0.9)
+                        .showName
+                            font-family: Montserrat-ExtraBold
+                .show:hover
+                    cursor: pointer
+                    .showArt img
+                        border: 0.15rem white solid
+                        box-shadow: 0 0 0.3rem white
+                    .showHover
+                        opacity: 1
+                        transform: scale(1)
+                    .platforms
+                        border: none
+                        box-shadow: none
+                        img
+                            border: none
+                            box-shadow: none
+                        
