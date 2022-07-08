@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Service Imports
 import { getCalendar } from "../../services/api";
@@ -8,13 +8,14 @@ import { CalendarItem } from "../../interfaces/calendarItem";
 import { ShowDate } from "../../interfaces/showDate";
 
 // Constant Imports
-import { days } from "../../constants/time";
+import { days, months } from "../../constants/time";
 
 // Component Imports
 import Calendar from "../../components/Calendar";
 
 export function IndexPage() {
     const [calendar, setCalendar] = useState<ShowDate[]>([]);
+    const mounted = useRef<boolean>();
 
     useEffect(() => {
         getCalendar().then((calendar : CalendarItem[]) => {
@@ -44,12 +45,17 @@ export function IndexPage() {
                     showDateCalendar[showDateCalendar.length - 1].calendarItems.push(calendar[i]);
                 }
             }
-        
-            console.log(showDateCalendar);
-
             setCalendar(showDateCalendar);
         });
     }, []);
+
+    useEffect(() => {
+        if (!mounted.current) mounted.current = true;
+        else {
+            console.log(document.getElementById(months[new Date().getMonth()] + new Date().getDate()));
+            document.getElementById(months[new Date().getMonth()] + new Date().getDate())?.scrollIntoView();
+        }
+    });
 
 
     return (
