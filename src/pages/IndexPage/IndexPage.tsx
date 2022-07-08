@@ -8,61 +8,57 @@ import { CalendarItem } from "../../interfaces/calendarItem";
 import { ShowDate } from "../../interfaces/showDate";
 
 // Constant Imports
-import { days, months } from "../../constants/time";
+import { months } from "../../constants/time";
 
 // Component Imports
 import Calendar from "../../components/Calendar";
+import { processCalendar } from "../../services/processCalendar";
+
+function jumpToToday() {
+    document.getElementById(months[new Date().getMonth()] + new Date().getDate())?.scrollIntoView();
+}
 
 export function IndexPage() {
     const [calendar, setCalendar] = useState<ShowDate[]>([]);
+    const [hasRun, setHasRun] = useState<boolean>(false);
     const mounted = useRef<boolean>();
 
     useEffect(() => {
-        getCalendar().then((calendar : CalendarItem[]) => {
-            let showDateCalendar : ShowDate[] = [];
-
-            for (let i = 0; i < calendar.length; i++) {
-                let calDate = new Date(Date.UTC(calendar[i].time.year, calendar[i].time.month, calendar[i].time.day, calendar[i].time.hour, calendar[i].time.minute));
-                calendar[i].time.hour = calDate.getHours();
-                calendar[i].time.minute = calDate.getMinutes();
-                if (showDateCalendar.length === 0 || (
-                    calDate.getFullYear() !== showDateCalendar[showDateCalendar.length - 1].year
-                    || calDate.getMonth() !== showDateCalendar[showDateCalendar.length - 1].month
-                    || calDate.getDate() !== showDateCalendar[showDateCalendar.length - 1].day
-                    )) 
-                {
-                    // Create a new ShowDate
-                    showDateCalendar.push({
-                        year: calDate.getFullYear(),
-                        month: calDate.getMonth(),
-                        day: calDate.getDate(),
-                        dayOfWeek: days[calDate.getDay()],
-                        calendarItems: [calendar[i]],
-                    });
-                }
-                else {
-                    // Add the calendar item to the last show date
-                    showDateCalendar[showDateCalendar.length - 1].calendarItems.push(calendar[i]);
-                }
-            }
-            setCalendar(showDateCalendar);
-        });
+        getCalendarTime(7);
     }, []);
 
     useEffect(() => {
+        if (hasRun) return;
         if (!mounted.current) mounted.current = true;
         else {
-            console.log(document.getElementById(months[new Date().getMonth()] + new Date().getDate()));
-            document.getElementById(months[new Date().getMonth()] + new Date().getDate())?.scrollIntoView();
+            jumpToToday();
+            setHasRun(true);
         }
     });
 
+    function getCalendarTime(selection : number) {
+        getCalendar(selection).then((calendar : CalendarItem[]) => {
+            setCalendar(processCalendar(calendar));
+        });
+    }
 
     return (
       <section id="index-page" className="section page">
         <header>
-            <h1>AniDub Schedule</h1>
-            <p>(AniList integration coming soon!)</p>
+            <div className = "title">
+                <h1>AniDub Schedule</h1>
+                <p>(AniList integration coming soon!)</p>
+            </div>
+            <div className = "dateSelectors">
+                {hasRun ? (<input onClick = {() => { getCalendarTime(7); }} type="radio" id="7" value="7" name="date"/>) : (<input checked onClick = {() => { getCalendarTime(7); }} type="radio" id="7" value="7" name="date"/>)}
+                <label htmlFor = "7">Last 7 days</label>
+                <input onClick = {() => { getCalendarTime(14); }} type="radio" id="14" value="14" name="date"/><label htmlFor = "14">Last 14 days</label>
+                <input onClick = {() => { getCalendarTime(30); }} type="radio" id="30" value="30" name="date"/><label htmlFor = "30">Last 30 days</label>
+                {/* <input type="radio" id="custom" value="custom" name="date"/><label htmlFor = "custom">Show custom</label>*/}
+            </div>
+            <div className = "today">
+                <button onClick = {() => { jumpToToday(); }}>Jump to Today</button>
+            </div>
         </header>
         <Calendar calendar = {calendar}></Calendar>
         {/*<div>
@@ -85,8 +81,14 @@ export function IndexPage() {
                 </div>
             </div>
     */}
-    <footer><p>
-        Created by taliyos/Charles Reverand. View on <a href = "https://github.com/taliyos/Anime-Dub-Schedule-React">GitHub</a></p></footer>
+    <footer>
+        <div>
+            <p>Created by taliyos/Charles Reverand. View on <a href = "https://github.com/taliyos/Anime-Dub-Schedule-React">GitHub</a></p>
+        </div>
+        <div>
+            <p>Calendar information from <a href = "https://teamup.com/ksdhpfjcouprnauwda">Comprehensive Anime Dubs Release Calendar</a></p>
+        </div>
+    </footer>
       </section>
     );
   }
