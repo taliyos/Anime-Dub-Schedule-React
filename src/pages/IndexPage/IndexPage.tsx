@@ -6,13 +6,8 @@ import { getCalendar } from "../../services/api";
 // Interface Imports
 import { CalendarItem } from "../../interfaces/calendarItem";
 import { ShowDate } from "../../interfaces/showDate";
-import { StreamingService } from "../../interfaces/streamingService";
 
 // Constant Imports
-import funimation from "../../constants/StreamingServices/funimation.json";
-import crunchyroll from "../../constants/StreamingServices/crunchyroll.json";
-import hidive from "../../constants/StreamingServices/hidive.json";
-import netflix from "../../constants/StreamingServices/netflix.json";
 import { days } from "../../constants/time";
 
 // Component Imports
@@ -61,10 +56,10 @@ export function IndexPage() {
       <section id="index-page" className="section page">
         <header>
             <h1>AniDub Schedule</h1>
-            
+            <p>(AniList integration coming soon!)</p>
         </header>
         <Calendar calendar = {calendar}></Calendar>
-        <div>
+        {/*<div>
                 <h2>Test Images </h2>
                 <div>
                     <p>{ (funimation as StreamingService).name }</p>
@@ -83,6 +78,9 @@ export function IndexPage() {
                     <img src = {(netflix as StreamingService).image} alt = "Netflix" />
                 </div>
             </div>
+    */}
+    <footer><p>
+        Created by taliyos/Charles Reverand. View on <a href = "https://github.com/taliyos/Anime-Dub-Schedule-React">GitHub</a></p></footer>
       </section>
     );
   }
