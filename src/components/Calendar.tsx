@@ -9,8 +9,8 @@ export default function Calendar(props: CalendarProp) {
     return (
         <section className = "main">
             {
-                props.calendar.map( (data) => (
-                    <ShowDateSection showDate = {data}></ShowDateSection>
+                props.calendar.map( (data, index) => (
+                    <ShowDateSection showDate = {data} row = {index}></ShowDateSection>
                 ))
             }
         </section>
