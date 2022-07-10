@@ -33,11 +33,19 @@
         transform: translateX(1rem)
     100%
         transform: translateX(0rem)
+
+$light-gray: #1e272e
+$dark-gray: #0f181f
+$orange: #f15025
+$green: #008148
+$blue: #0075c4
+
+$bg-gradient: linear-gradient(184deg,$light-gray 0,$dark-gray 75vh)
     
 body
     font-family: "Montserrat-Regular"
     background: rgba(30, 39, 46,1.0)
-    background-image: linear-gradient(184deg,rgba(30, 39, 46,1.0) 0,rgba(15, 24, 31,0.75) 75vh)
+    background-image: $bg-gradient
     min-height: 100vh
     color: white
     padding: 0
@@ -46,9 +54,6 @@ body
 .main
     display: flex
     flex-direction: column
-    height: 90vh
-    overflow-y: scroll
-
     .login
         margin-top: 2rem
         margin-left: 1.5rem
@@ -136,7 +141,7 @@ body
                                 height: 2.5rem
 
                                 border-radius: 100%
-                                background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgba(218,228,255,1) 75%)
+                                background-image: $bg-gradient
 
                                 display: flex
                                 justify-content: center
@@ -201,15 +206,20 @@ section
     padding: 0    
     
 header
-    height: 5vh
+    height: 4rem
     padding: 0
     padding-left: 0.75rem
     padding-right: 0.75rem
     margin: 0
     overflow: hidden
+    position: sticky
+    top: 0
+    z-index: 10
 
     display: flex
     align-items: center
+    background: linear-gradient(184deg,rgba(30, 39, 46,1.0) 0,rgba(15, 24, 31,1) 75vh)
+    box-shadow: 0px 10px 13px -7px #000000, 0px 5px 13px 5px rgba(0,0,0,0)
     .title
         display: flex
         justify-content: flex-start
@@ -229,26 +239,26 @@ header
             border: 0.1rem white solid
             box-shadow: 0 0 0.3rem white
     
-    button, label
-        padding: 0.5rem
-        text-align: center
-        font-family: "Montserrat-Regular"
-        color: white
-        background: linear-gradient(180deg, rgba(255,94,45,1) 0%, rgba(164,21,8,1) 100%)
-        border: none
-        border-radius: 2vw
-        cursor: pointer
-        border: 0.1rem rgba(0, 0, 0,0 ) solid
-        &:hover
-            background: linear-gradient(184deg, rgba(255,151,119,1) 0%, rgba(210,45,30,1) 100%)
-        &:active
-            background: linear-gradient(184deg, rgba(201,59,16,1) 0%, rgba(145,16,4,1) 100%)
-    .today
-        flex-grow: 1
-        display: flex
-        justify-content: flex-end
-        button
-            font-size: 0.9rem
+button, label
+    padding: 0.5rem
+    text-align: center
+    font-family: "Montserrat-Regular"
+    color: white
+    background: linear-gradient(180deg, rgba(255,94,45,1) 0%, rgba(164,21,8,1) 100%)
+    border: none
+    border-radius: 15rem
+    cursor: pointer
+    border: 0.1rem rgba(0, 0, 0,0 ) solid
+    &:hover
+        background: linear-gradient(184deg, rgba(255,151,119,1) 0%, rgba(210,45,30,1) 100%)
+    &:active
+        background: linear-gradient(184deg, rgba(201,59,16,1) 0%, rgba(145,16,4,1) 100%)
+.today
+    flex-grow: 1
+    display: flex
+    justify-content: flex-end
+    button
+        font-size: 0.9rem
 
 footer
     height: 5vh
@@ -260,3 +270,169 @@ footer
     p
         a:visited
             color: white
+
+.goTo
+    display: none
+
+@media screen and (max-width: 667px) 
+    header
+        height: auto
+        box-shadow: none
+        position: relative
+        flex-direction: column
+        padding-top: 1rem
+        gap: 0.8rem
+        .title
+            h1
+                font-size: 2rem
+                font-family: Montserrat-ExtraBold
+            p
+                display: none
+        .dateSelectors
+            gap: 0
+            padding: 0
+            height: 2.5rem
+            align-items: center
+            label
+                border-radius: 25rem
+                font-size: 0.9rem
+        .today
+            display: none
+    .main
+        width: 100vw
+        .showSection
+            width: 100vw
+            margin: 0
+            padding: 0
+            flex-direction: column
+            .date
+                text-transform: uppercase
+                text-align: center
+                margin: 0
+                padding: 0
+                padding-top: 0.5rem
+            .shows
+                display: flex
+                flex-direction: column
+                width: 100%
+                height: 100%
+                .dayOfWeek
+                    font-family: Montserrat-Bold
+                    font-size: 0.9rem
+                    animation: 0.25s ease-out 1 slideIn
+                    line-height: 0.5rem
+                    text-align: center
+
+                .showImages
+                    display: flex
+                    flex-direction: row
+                    justify-content: center
+                    overflow: auto
+                    flex-grow: 1
+                    flex-wrap: wrap
+                    overflow: visible
+                    gap: 0.35rem
+                    .show
+                        margin-right: 0
+                        margin-bottom: 0
+                        width: 10.71rem
+                        height: 15rem
+                        position: relative
+                        .showArt
+                            width: 100
+                            height: 100%
+                            animation: 0.25s ease-out 1 infoDisplay
+                            img
+                                min-width: 100%
+                                max-height: 100%
+                                border: 0.15rem transparent solid
+                                border-radius: 0.35rem
+                                transition: box-shadow 0.15s ease-in-out
+                                transition: border-color 0.15s ease-in-out
+                                object-fit: cover
+                            .platforms
+                                position: absolute
+                                top: 0.25rem
+                                left: calc(100% - 2.3rem)
+                                height: 100%
+
+                                display: flex
+                                flex-direction: column
+                                align-items: center
+                                justify-content: flex-start
+                                gap: 0.25rem
+
+                                .platform
+                                    width: 2rem
+                                    height: 2rem
+
+                                    border-radius: 100%
+                                    background-image: $bg-gradient
+
+                                    display: flex
+                                    justify-content: center
+                                    align-items: center
+                                    text-decoration: none
+                                    color: black
+                                    font-weight: bolder
+                                    img
+                                        padding: 0
+                                        margin: 0
+                                        max-width: 90%
+                                        min-width: 90%
+                                        max-height: 90%
+                                        border: none
+                                        text-align: center
+                                        font-size: 1.5rem
+                                .platform:hover
+                                    box-shadow: 0 0 0.3rem white
+                    .show:hover
+                        cursor: pointer
+                        .showArt img
+                            border: 0.15rem white solid
+                            box-shadow: 0 0 0.3rem white
+                        .showHover
+                            opacity: 1
+                            transform: scale(1)
+                        .platforms
+                            border: none
+                            box-shadow: none
+                            img
+                                border: none
+                                box-shadow: none
+
+    .showHover
+        display: flex
+        flex-direction: column
+
+        box-sizing: border-box
+        pointer-events: none
+
+        width: 10rem
+        margin-left: 0.25rem
+        margin-right: 0.25rem
+        padding: 0.5rem
+
+        border-radius: 0.5rem
+
+        background: linear-gradient(180deg, rgba(255,94,45,1) 0%, rgba(164,21,8,1) 100%)
+        border: 0.1rem white solid
+        box-shadow: 0 0 0.3rem white
+
+        animation: 0.25s ease-out 1 infoDisplay
+        div
+            font-size: 1.1rem
+            font-weight: 300
+        .showName
+            font-family: Montserrat-ExtraBold
+
+    .goTo
+        display: flex
+        margin-top: 2rem
+        justify-content: center
+        z-index: 100
+
+    footer
+        height: auto
+        flex-direction: column
+        margin-top: 2rem

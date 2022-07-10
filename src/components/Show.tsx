@@ -22,7 +22,7 @@ export default function Show(props: CalendarItemProp) {
 
     return (
         <div data-row={props.row} data-num={props.index} tabIndex={0} className="show" onMouseOver={() => { setIsPopoverOpen(true); }} onMouseLeave={() => { setIsPopoverOpen(false); }}>
-            <Popover align={"start"} padding={0} isOpen={isPopoverOpen} positions={["right", "left"]} content={ <ShowInfo calendarItem = {props.calendarItem}></ShowInfo>
+            <Popover align={"start"} padding={0} isOpen={isPopoverOpen} positions={["right", "left", "top"]} content={ <ShowInfo calendarItem = {props.calendarItem}></ShowInfo>
             }>
                 <div className="showArt">
                     <img alt={"Key art for " + props.calendarItem.show.name} src={props.calendarItem.show.image} />

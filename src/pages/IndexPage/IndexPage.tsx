@@ -34,7 +34,7 @@ export function IndexPage() {
             jumpToToday();
             setHasRun(true);
         }
-    });
+    }, [hasRun]);
 
     function getCalendarTime(selection : number) {
         getCalendar(selection).then((calendar : CalendarItem[]) => {
@@ -81,6 +81,9 @@ export function IndexPage() {
                 </div>
             </div>
     */}
+    <div className = "goTo today">
+        <button onClick = {() => { jumpToToday(); }}>Jump to Today</button>
+    </div>
     <footer>
         <div>
             <p>Created by taliyos/Charles Reverand. View on <a href = "https://github.com/taliyos/Anime-Dub-Schedule-React">GitHub</a></p>
