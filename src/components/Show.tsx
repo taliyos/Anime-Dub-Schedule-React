@@ -8,6 +8,7 @@ import funimation from "../constants/StreamingServices/funimation.json";
 import crunchyroll from "../constants/StreamingServices/crunchyroll.json";
 import hidive from "../constants/StreamingServices/hidive.json";
 import netflix from "../constants/StreamingServices/netflix.json";
+import other from "../constants/StreamingServices/other.json";
 import { StreamingService } from "../interfaces/streamingService";
 
 type CalendarItemProp = {
@@ -42,7 +43,8 @@ export default function Show(props: CalendarItemProp) {
 
 function getPlatformImage(name: string) {
     if (name.toLowerCase() === "funimation") return (funimation as StreamingService).image;
-    if (name.toLowerCase() === "crunchyroll") return (crunchyroll as StreamingService).image;
-    if (name.toLowerCase() === "hidive") return (hidive as StreamingService).image;
-    if (name.toLowerCase() === "netflix") return (netflix as StreamingService).image;
+    else if (name.toLowerCase() === "crunchyroll") return (crunchyroll as StreamingService).image;
+    else if (name.toLowerCase() === "hidive") return (hidive as StreamingService).image;
+    else if (name.toLowerCase() === "netflix") return (netflix as StreamingService).image;
+    else return (other as StreamingService).image;
 }
