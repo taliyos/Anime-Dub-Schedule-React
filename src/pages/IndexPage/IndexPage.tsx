@@ -54,33 +54,12 @@ export function IndexPage() {
                 <label htmlFor = "7">Last 7 days</label>
                 <input onClick = {() => { getCalendarTime(14); }} type="radio" id="14" value="14" name="date"/><label htmlFor = "14">Last 14 days</label>
                 <input onClick = {() => { getCalendarTime(30); }} type="radio" id="30" value="30" name="date"/><label htmlFor = "30">Last 30 days</label>
-                {/* <input type="radio" id="custom" value="custom" name="date"/><label htmlFor = "custom">Show custom</label>*/}
             </div>
             <div className = "today">
                 <button onClick = {() => { jumpToToday(); }}>Jump to Today</button>
             </div>
         </header>
         <Calendar calendar = {calendar}></Calendar>
-        {/*<div>
-                <h2>Test Images </h2>
-                <div>
-                    <p>{ (funimation as StreamingService).name }</p>
-                    <img src = {(funimation as StreamingService).image} alt = "Funimation" />
-                </div>
-                <div>
-                    <p>{ (crunchyroll as StreamingService).name }</p>
-                    <img src = {(crunchyroll as StreamingService).image} alt = "Crunchyroll" />
-                </div>
-                <div>
-                    <p>{ (hidive as StreamingService).name }</p>
-                    <img src = {(hidive as StreamingService).image} alt = "HiDive" />
-                </div>
-                <div>
-                    <p>{ (netflix as StreamingService).name }</p>
-                    <img src = {(netflix as StreamingService).image} alt = "Netflix" />
-                </div>
-            </div>
-    */}
     <div className = "goTo today">
         <button onClick = {() => { jumpToToday(); }}>Jump to Today</button>
     </div>

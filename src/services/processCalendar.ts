@@ -14,6 +14,18 @@ export function processCalendar(calendar: CalendarItem[]) {
             || calDate.getMonth() !== showDateCalendar[showDateCalendar.length - 1].month
             || calDate.getDate() !== showDateCalendar[showDateCalendar.length - 1].day
         )) {
+
+            // Check for a weird time issue
+            if (showDateCalendar.length !== 0 && (calDate.getFullYear() < showDateCalendar[showDateCalendar.length - 1].year
+                || calDate.getMonth() < showDateCalendar[showDateCalendar.length - 1].month
+                || calDate.getDate() < showDateCalendar[showDateCalendar.length - 1].day)) {
+                    // Skip if the date the show belongs to is out of range
+                    if (showDateCalendar.length < 1) continue;
+                    // Add the show to the previous day
+                    showDateCalendar[showDateCalendar.length - 2].calendarItems.push(calendar[i]);
+                    continue;
+                }
+
             // Create a new ShowDate
             showDateCalendar.push({
                 year: calDate.getFullYear(),
