@@ -6,10 +6,10 @@ export function processCalendar(calendar: CalendarItem[]) {
     let showDateCalendar: ShowDate[] = [];
     
     let lastNewDay = -1;
-    
 
     for (let i = 0; i < calendar.length; i++) {
         let calDate = new Date(Date.UTC(calendar[i].time.year, calendar[i].time.month, calendar[i].time.day, calendar[i].time.hour, calendar[i].time.minute));
+
         calendar[i].time.hour = calDate.getHours();
         calendar[i].time.minute = calDate.getMinutes();
         if (showDateCalendar.length === 0 || lastNewDay === -1 || (
@@ -17,7 +17,6 @@ export function processCalendar(calendar: CalendarItem[]) {
             || calDate.getMonth() !== showDateCalendar[lastNewDay].month
             || calDate.getDate() !== showDateCalendar[lastNewDay].day
         )) {
-            console.log("new date?");
 
             // Check for a weird time issue
             if (showDateCalendar.length !== 0 && ((calDate.getFullYear() < showDateCalendar[lastNewDay].year
@@ -27,7 +26,6 @@ export function processCalendar(calendar: CalendarItem[]) {
                                                                             && calDate.getFullYear() === showDateCalendar[lastNewDay].year)
                 || (calDate.getDate() < showDateCalendar[lastNewDay].day && calDate.getMonth() === showDateCalendar[lastNewDay].month
                                                                          && calDate.getFullYear() === showDateCalendar[lastNewDay].year))) {
-                    console.log("not new");
                     // Skip if the date the show belongs to is out of range
                     if (showDateCalendar.length < 2) continue;
                     // Add the show to the previous day
@@ -43,7 +41,6 @@ export function processCalendar(calendar: CalendarItem[]) {
                 dayOfWeek: days[calDate.getDay()],
                 calendarItems: [calendar[i]],
             });
-            console.log("new at " + (showDateCalendar.length - 1));
             lastNewDay = showDateCalendar.length - 1;
         }
         else {
